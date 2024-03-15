@@ -81,14 +81,39 @@ class SNAKE:
 					# 2 : next up and previous left or next right and previous down
 					# 3 : next down and previous right or next left and previous up
 					# 4 : next down and previous left or next right and previous up
-					next_up = (next_dir.x == 0) and ((next_dir.y < 0) or (next_dir.y == CELL_NUMBER - 1))
-					next_down = (next_dir.x == 0) and ((next_dir.y > 0) or (next_dir.y == -CELL_NUMBER + 1))
-					next_right = (next_dir.y == 0) and ((next_dir.x > 0) or (next_dir.x == -CELL_NUMBER + 1))
-					next_left = (next_dir.y == 0) and ((next_dir.x < 0) or (next_dir.x == CELL_NUMBER - 1))
-					previous_up = (previous_dir.x == 0) and ((previous_dir.y < 0) or (previous_dir.y == CELL_NUMBER - 1))
-					previous_down = (previous_dir.x == 0) and ((previous_dir.y > 0) or (previous_dir.y == -CELL_NUMBER + 1))
-					previous_right = (previous_dir.y == 0) and ((previous_dir.x > 0) or (previous_dir.x == -CELL_NUMBER + 1))
-					previous_left = (previous_dir.y == 0) and ((previous_dir.x < 0) or (previous_dir.x == CELL_NUMBER - 1))
+					next_up = (next_dir.x == 0) and (next_dir.y < 0)
+					next_down = (next_dir.x == 0) and (next_dir.y > 0)
+					if next_dir.y == CELL_NUMBER - 1:
+						next_up = True
+						next_down = False
+					if next_dir.y == -CELL_NUMBER + 1:
+						next_up = False
+						next_down = True
+					next_right = (next_dir.y == 0) and (next_dir.x > 0)
+					next_left = (next_dir.y == 0) and (next_dir.x < 0)
+					if next_dir.x == CELL_NUMBER - 1:
+						next_right = False
+						next_left = True
+					if next_dir.x ==  -CELL_NUMBER + 1:
+						next_right = True
+						next_left = False
+					previous_up = (previous_dir.x == 0) and (previous_dir.y < 0)
+					previous_down = (previous_dir.x == 0) and (previous_dir.y > 0)
+					if previous_dir.y == CELL_NUMBER - 1:
+						previous_up = True
+						previous_down = False
+					if previous_dir.y == -CELL_NUMBER + 1:
+						previous_up = False
+						previous_down = True	
+					previous_right = (previous_dir.y == 0) and (previous_dir.x > 0)
+					previous_left = (previous_dir.y == 0) and (previous_dir.x < 0)
+					if previous_dir.x == CELL_NUMBER - 1:
+						previous_right = False
+						previous_left = True
+					if previous_dir.x ==  -CELL_NUMBER + 1:
+						previous_right = True
+						previous_left = False
+					
 					if (next_up and previous_left) or (next_right and previous_down):
 						screen.blit(self.body_tr, block_rect)
 					elif (next_up and previous_right) or (next_left and previous_down):
